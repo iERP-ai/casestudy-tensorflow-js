@@ -1,6 +1,6 @@
-var csv = require('csv');
+const csv = require('csv');
 const db = require('better-sqlite3')(':memory:');
-var heapBefore = process.memoryUsage();
+const heapBefore = process.memoryUsage();
 
 db.prepare('CREATE TABLE perf (f1 TEXT, f2 TEXT, f3 TEXT, f4 TEXT, f5 TEXT)').run();
 
