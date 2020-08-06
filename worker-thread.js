@@ -1,6 +1,6 @@
 //worker.js
-const { workerData, parentPort } = require('worker_threads');
 const tf = require('@tensorflow/tfjs-node');
+const { parentPort, workerData } = require('worker_threads');
 
 if (workerData.type === 'training') {
     const xs = tf.tensor2d(workerData.trainingData, [workerData.trainingData.length, 2]);
@@ -10,21 +10,21 @@ if (workerData.type === 'training') {
     const batchSize = 1;
 
     const model = tf.sequential();
-    model.add(tf.layers.dense({ units: 3, inputShape:2 }));
+    model.add(tf.layers.dense({ units: 3, inputShape: 2 }));
     model.add(tf.layers.dense({ units: 1 }));
-    model.compile({optimizer: 'adam', loss: 'meanSquaredError'});
+    model.compile({ optimizer: 'adam', loss: 'meanSquaredError' });
 
     model.fit(xs, ys, {
         epochs,
         batchSize,
-        verbose:0,
+        verbose: 0,
         callbacks: {
             onEpochEnd: async (epochNumber, loss) => {
-                parentPort.postMessage({ type: 'epochUpdate', epochNumber:epochNumber, loss:loss.loss });
+                parentPort.postMessage({ type: 'epochUpdate', epochNumber: epochNumber, loss: loss.loss });
             },
         }
-    }).finally( ()=> {
-        parentPort.postMessage({ type: 'trainingCompleted'});
+    }).finally(() => {
+        parentPort.postMessage({ type: 'trainingCompleted' });
     });
 
 }
