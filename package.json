@@ -2,17 +2,17 @@
   "name": "casestudy-tensorflow-js",
   "version": "1.0.0",
   "description": "",
-  "scripts": {
-    "execHeapArray": "node --expose-gc ./heap-array.js",
-    "execHeapSqlite": "node --expose-gc ./heap-sqlite.js",
-    "execMainThread": "node ./main-thread.js"
-  },
+  "homepage": "https://ierp.ai/",
+  "license": "LicenseRef-LICENSE",
   "author": {
     "name": "iERP j.s.a.",
     "email": "development@ierp.ai"
   },
-  "homepage": "https://ierp.ai/",
-  "license": "LicenseRef-LICENSE",
+  "scripts": {
+    "execHeapArray": "node --expose-gc heap-array.js",
+    "execHeapSqlite": "node --expose-gc heap-sqlite.js",
+    "execMainThread": "node main-thread.js"
+  },
   "dependencies": {
     "@tensorflow/tfjs-node": "^1.5.1",
     "better-sqlite3": "^7.1.0",

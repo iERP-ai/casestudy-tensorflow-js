@@ -6,28 +6,28 @@ function runService(workerData) {
         const worker = new Worker('./worker-thread.js', { workerData });
 
         worker.on('message', (data) => {
-            switch(data.type) {
-            case 'epochUpdate':
-                console.log ('Epoch:', data.epochNumber, 'Loss:', data.loss);
-                break;
-            case 'trainingCompleted':
-                resolve();
-                break;
-            default:
-              // code block
-          }
+            switch (data.type) {
+                case 'epochUpdate':
+                    console.log('Epoch:', data.epochNumber, 'Loss:', data.loss);
+                    break;
+                case 'trainingCompleted':
+                    resolve();
+                    break;
+                default:
+                // code block
+            }
         });
         worker.on('error', reject);
         worker.on('exit', (code) => {
-        if (code !== 0)
-            reject(new Error(`Worker stopped with exit code ${code}`));
+            if (code !== 0)
+                reject(new Error(`Worker stopped with exit code ${ code }`));
         })
     })
 }
 
 function generateTrainingData() {
     //Here you will prepare your training data
-    return [[1,2], [2,3], [3,4], [5,6], [7,8]];
+    return [[1, 2], [2, 3], [3, 4], [5, 6], [7, 8]];
 }
 
 function generateTestData() {
@@ -45,4 +45,4 @@ async function run() {
     });
 }
 
-run().catch(err => console.error(err))
+run().catch((err) => console.error(err))
