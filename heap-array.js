@@ -1,6 +1,6 @@
-var csv = require('csv');
-var dataArray = [];
-var heapBefore = process.memoryUsage();
+const csv = require('csv');
+const dataArray = [];
+const heapBefore = process.memoryUsage();
 
 console.log ('Running test for 1.000.000 records stored in NodeJS Array');
 csv.generate({seed: 1, columns: 5, length: 1000000})
