@@ -1,7 +1,7 @@
-var csv = require('csv');
+const csv = require('csv');
 const db = require('better-sqlite3')(':memory:');
 db.prepare('CREATE TABLE perf (f1 TEXT, f2 TEXT, f3 TEXT, f4 TEXT, f5 TEXT)').run();
-var heapBefore = process.memoryUsage();
+const heapBefore = process.memoryUsage();
 
 console.log ('Running test for 1.000.000 records stored in SQLite3');
 csv.generate({seed: 1, columns: 5, length: 1000000})
